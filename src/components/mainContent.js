@@ -1,31 +1,46 @@
 import { useEffect, useState, useRef } from "react"
 import ContactCard from "./contactCard"
 import { getCharacter } from 'rickmortyapi';
+import { Spinner } from "react-bootstrap";
 
 export default function MainContent(){
 
     const batch = 10;
     const counter = useRef(1);
+    const loading = useRef(false);
     const [contacts, setContacts] = useState([]);
     const [loadMore, setLoadMore] = useState(true);
 
     useEffect(() => {
-        setLoadMore(false);
+        async function getCharReponse(){
+            return new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    resolve(getCharacter(getNextIdArray()))
+                },3000);
+            })
+        }
+        
         async function fetchData() {
-            const characters = await getCharacter(getNextIdArray());
+            loading.current = true;
+            const characters = await getCharReponse();
             setContacts(prevState => ([
                 ...prevState,
                 ...characters.map(({name, image, id})=>({name,image,id}))
             ]))
+            
+            loading.current = false;
         }
 
         if(loadMore) fetchData();
+        setLoadMore(false);
     }, [loadMore]);
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     });
+
+    
 
     function handleScroll(e) {
         const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
@@ -57,6 +72,11 @@ export default function MainContent(){
                         <ContactCard key={i} {...contact}/>
                     )
                 })
+            }
+            {loading.current && (<div className="text-center">
+                    <Spinner className="fixed-middle float-right" animation="grow" size="lg"/>
+                    </div>
+                )
             }
         </div>
     )
