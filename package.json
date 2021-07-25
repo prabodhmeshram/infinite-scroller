@@ -21,7 +21,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "node_modules/.bin/eslint --ext js src",
-    "predeploy" : "npm run deploy",
+    "predeploy" : "npm run build",
     "deploy" : "gh-pages -d build"
   },
   "eslintConfig": {
