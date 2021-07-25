@@ -26,7 +26,7 @@
 ### Mobile view
 
 <div>
-    <div style="float:left;margin-right: 10px;">
+    <div style="float:left;margin-right: 10px; width:30%">
         <h4> Login Page </h4>
         <img src="screenshots/mobile-view-login.png"
             alt="Login desktop view"
