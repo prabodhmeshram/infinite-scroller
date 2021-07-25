@@ -20,7 +20,6 @@ export function LoginBox(){
         return AuthService.login(username,password)
         .then((response)=>{
             if(response){
-                console.log("Valid user");
                 history.push('home');
             }
         })

@@ -1,7 +1,11 @@
-import { MenuBar } from "../components/menuBar";
+import MainContent from "../components/mainContent";
+import MenuBar from "../components/menuBar";
 
-export function HomePage(){
+export default function HomePage(){
     return (
-        <MenuBar />
+        <>
+            <MenuBar />
+            <MainContent />
+        </>
     )
 }
