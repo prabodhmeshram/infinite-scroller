@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useHistory } from "react-router-dom";
 import AuthService from "../services/AuthService";
 
-export function LoginBox(){
+export default function LoginBox(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     let history = useHistory();
