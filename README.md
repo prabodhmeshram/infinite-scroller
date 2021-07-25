@@ -8,8 +8,9 @@
 
 ## Login Credentials
 
-user: prabodh
-password: admin@123
+> user: prabodh
+
+> password: admin@123
 
 ## Snapshots 
 
